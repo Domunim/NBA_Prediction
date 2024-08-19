@@ -24,13 +24,25 @@ class HomePage extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Colors.blue,
-        leading: Container(
-          margin: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-              color: Colors.black,
+        leading: GestureDetector(
+          onTap: () {
+            
+
+          },
+          child:Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.all(10),
+            child: SvgPicture.asset(
+              'assets/icons/dark_light_mode_icon.svg',
+              height: 30,
+              width: 30,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.blue,
               borderRadius: BorderRadius.circular(10)
             ),
           ),
+        ),
     );
   }
 }
