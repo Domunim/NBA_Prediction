@@ -76,16 +76,16 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: Nexa-Trial
+     - family: Poppins
        fonts:
-         - asset: fonts/Nexa-Trial-Black.ttf
-         - asset: fonts/Nexa-Trial-Bold.ttf
-         - asset: fonts/Nexa-Trial-BlackItalic.ttf
-         - asset: fonts/Nexa-Trial-ExtraLight.ttf
-         - asset: fonts/Nexa-Trial-Heavy.ttf
-         - asset: fonts/Nexa-Trial-Light.ttf
-         - asset: fonts/Nexa-Trial-Regular.ttf    
-         - asset: fonts/Nexa-Trial-Thin.ttf
+         - asset: fonts/Poppins-Black.ttf
+         - asset: fonts/Poppins-Bold.ttf
+         - asset: fonts/Poppins-ExtraBold.ttf
+         - asset: fonts/Poppins-ExtraLight.ttf
+         - asset: fonts/Poppins-Light.ttf
+         - asset: fonts/Poppins-Regular.ttf   
+         - asset: fonts/Poppins-Medium.ttf     
+         - asset: fonts/Poppins-Italic.ttf
 
   #   - family: Trajan Pro
   #     fonts:

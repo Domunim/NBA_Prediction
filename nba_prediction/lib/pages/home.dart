@@ -12,33 +12,28 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<MatchModel> matches = [];
-
   List<TeamModel> teams = [];
+  final ScrollController _scrollController = ScrollController();
 
-  void getData() {
-    getTeams();
-    getMatches();
-  }
-
-  void getTeams() {
-    teams = []; // fix
-  }
-
-  void getMatches() {
+  void getTeamsAndMatches() {
     matches = MatchModel.getMatches();
+    teams = TeamModel.getTeams();
   }
-
 
   @override
   void initState() {
-    getData();
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollToCenter();
+    });
+    
+    getTeamsAndMatches();
   }
-
 
 
   @override
   Widget build(BuildContext context) {
-    getData();
+    getTeamsAndMatches();
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: appBar(context),
@@ -76,36 +71,126 @@ class _HomePageState extends State<HomePage> {
 
   Expanded matchList() {
     return Expanded(
-            child: ListView.builder(
-              itemCount: 10, // demo
-              // itemCount: matches.lenght,
-              itemBuilder: (context, index) {
-                return Card(
-                  margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                  child: ListTile(
-                    title: Text('Card ${index + 1}'), // demo
-                    subtitle: Text('Placeholder for match ${index + 1}'), // demo
-                  ),
-                );
-              },
+      child: ListView.builder(
+        itemCount: matches.length,
+        itemBuilder: (context, index) {
+          final match = matches[index];
+
+          return matchCard(match);
+        },
+      ),
+    );
+  }
+
+  Card matchCard(MatchModel match) {
+    return Card(
+          margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                // Time Row
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      match.date.hour.toString().padLeft(2, '0') + ":" + match.date.minute.toString().padLeft(2, '0'),
+                      style: TextStyle(fontSize: 16.0, color: Colors.blueGrey),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8.0),
+
+                // Teams and odds
+                Row(
+                  children: [
+
+                    // Home team
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'assets/images/${match.homeTeamShortName}.png',
+                            width: 60.0,
+                            height: 60.0,
+                          ),
+                          SizedBox(height: 4.0),
+                          Text(
+                            TeamModel.getTeamName(match.homeTeamShortName, teams),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // Odds
+                    Expanded(
+                      child: Column(
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.black),
+                              children: [
+                                TextSpan(text: '${match.oddsForHomeTeam}'),
+                                TextSpan(
+                                  text: '%',
+                                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.normal),
+                                ),
+                                TextSpan(text: ' : ${match.oddsForAwayTeam}'),
+                                TextSpan(
+                                  text: '%',
+                                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.normal),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // Away team
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'assets/images/${match.awayTeamShortName}.png',
+                            width: 60.0,
+                            height: 60.0,
+                          ),
+                          SizedBox(height: 4.0),
+                          Text(
+                            TeamModel.getTeamName(match.awayTeamShortName, teams),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          );
+          ),
+        );
   }
 
   AppBar appBar(BuildContext context) {
     return AppBar(
-        title: Image.asset('assets/images/NBA_predictor_logo.png', 
-        fit: BoxFit.fill),
-        centerTitle: true,
-        //backgroundColor: Colors.blueGrey,
-        backgroundColor: Theme.of(context).secondaryHeaderColor,
-        // toolbarHeight: 88,
-        leading: GestureDetector(
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
+      // Remove `leading` to avoid any element on the left side
+      title: Image.asset(
+        'assets/images/NBA_predictor_logo.png',
+        fit: BoxFit.contain,
+        height: 100,
+      ),
+      centerTitle: true,
+      actions: [
+        GestureDetector(
           onTap: () {
-            
-
+            // Dark mode TODO
           },
-          child:Container(
+          child: Container(
             alignment: Alignment.center,
             margin: EdgeInsets.all(10),
             child: SvgPicture.asset(
@@ -115,10 +200,20 @@ class _HomePageState extends State<HomePage> {
             ),
             decoration: BoxDecoration(
               color: Theme.of(context).secondaryHeaderColor,
-              borderRadius: BorderRadius.circular(10)
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
         ),
+      ],
+    );
+  }
+
+  void _scrollToCenter() {
+    final double scrollPosition = _scrollController.position.maxScrollExtent / 2;
+    _scrollController.animateTo(
+      scrollPosition,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
     );
   }
 }
