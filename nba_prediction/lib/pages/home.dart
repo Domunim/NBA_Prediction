@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nba_prediction/models/match_model.dart';
 import 'package:nba_prediction/models/team_model.dart';
+import 'package:nba_prediction/pages/matchDetails.dart';
+import 'package:nba_prediction/widgets/appBar.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -45,7 +47,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Container dateBar() {
+  Container dateBar() { // TODO - if selected highlight, center
     return Container(
       height: 60.0,
       child: Center(
@@ -58,7 +60,7 @@ class _HomePageState extends State<HomePage> {
               String label = index == 3 ? "Today" : "${date.day}.${date.month}";
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Chip(
+                child: Chip( // TODO wrap the chip with gesturedetector
                   label: Text(label),
                   ),
                 );
@@ -82,131 +84,118 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Card matchCard(MatchModel match) {
-    return Card(
-          margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+GestureDetector matchCard(MatchModel match) {
+  return GestureDetector(
+    onTap: () {
+      print('Navigating to MatchDetails...'); // TEST
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MatchDetails(match: match, teams: teams),
+        ),
+      );
+    },
+    child: Card(
+      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
+            // Time Row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
-                // Time Row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      match.date.hour.toString().padLeft(2, '0') + ":" + match.date.minute.toString().padLeft(2, '0'),
-                      style: TextStyle(fontSize: 16.0, color: Colors.blueGrey),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 8.0),
-
-                // Teams and odds
-                Row(
-                  children: [
-
-                    // Home team
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/images/${match.homeTeamShortName}.png',
-                            width: 60.0,
-                            height: 60.0,
-                          ),
-                          SizedBox(height: 4.0),
-                          Text(
-                            TeamModel.getTeamName(match.homeTeamShortName, teams),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    // Odds
-                    Expanded(
-                      child: Column(
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                              style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.black),
-                              children: [
-                                TextSpan(text: '${match.oddsForHomeTeam}'),
-                                TextSpan(
-                                  text: '%',
-                                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.normal),
-                                ),
-                                TextSpan(text: ' : ${match.oddsForAwayTeam}'),
-                                TextSpan(
-                                  text: '%',
-                                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.normal),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    // Away team
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/images/${match.awayTeamShortName}.png',
-                            width: 60.0,
-                            height: 60.0,
-                          ),
-                          SizedBox(height: 4.0),
-                          Text(
-                            TeamModel.getTeamName(match.awayTeamShortName, teams),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                Text(
+                  match.date.hour.toString().padLeft(2, '0') + ":" + match.date.minute.toString().padLeft(2, '0'),
+                  style: TextStyle(fontSize: 16.0, color: Colors.blueGrey),
                 ),
               ],
             ),
-          ),
-        );
-  }
+            SizedBox(height: 8.0),
 
-  AppBar appBar(BuildContext context) {
-    return AppBar(
-      backgroundColor: Theme.of(context).secondaryHeaderColor,
-      // Remove `leading` to avoid any element on the left side
-      title: Image.asset(
-        'assets/images/NBA_predictor_logo.png',
-        fit: BoxFit.contain,
-        height: 100,
-      ),
-      centerTitle: true,
-      actions: [
-        GestureDetector(
-          onTap: () {
-            // Dark mode TODO
-          },
-          child: Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.all(10),
-            child: SvgPicture.asset(
-              'assets/icons/dark_light_mode_icon.svg',
-              height: 30,
-              width: 30,
+            // Teams and odds
+            Row(
+              children: [
+
+                // Home team
+                Expanded(
+                  child: Column(
+                    children: [
+                      Hero(
+                        tag: '${match.homeTeamShortName}-logo',
+                        child: Image.asset(
+                          'assets/images/${match.homeTeamShortName}.png',
+                          width: 60.0,
+                          height: 60.0,
+                        ),
+                      ),
+                      SizedBox(height: 4.0),
+                      Text(
+                        TeamModel.getTeamName(match.homeTeamShortName, teams),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Odds
+                Expanded(
+                  child: Column(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.black),
+                          children: [
+                            TextSpan(text: '${match.oddsForHomeTeam}'),
+                            TextSpan(
+                              text: '%',
+                              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.normal),
+                            ),
+                            TextSpan(text: ' : ${match.oddsForAwayTeam}'),
+                            TextSpan(
+                              text: '%',
+                              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.normal),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Away team
+                Expanded(
+                  child: Column(
+                    children: [
+                      Hero(
+                        tag: '${match.awayTeamShortName}-logo',
+                        child: Image.asset(
+                          'assets/images/${match.awayTeamShortName}.png',
+                          width: 60.0,
+                          height: 60.0,
+                        ),
+                      ),
+                      SizedBox(height: 4.0),
+                      Text(
+                        TeamModel.getTeamName(match.awayTeamShortName, teams),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            decoration: BoxDecoration(
-              color: Theme.of(context).secondaryHeaderColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
+          ],
         ),
-      ],
-    );
-  }
+      ),
+    ),
+  );
+}
+
+
+
 
   void _scrollToCenter() {
     final double scrollPosition = _scrollController.position.maxScrollExtent / 2;

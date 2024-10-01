@@ -17,7 +17,7 @@ class MatchModel {
   static List<MatchModel> getMatches() {
       List<MatchModel> matches = [];
 
-      // method to get list of matches from the API
+      // TODO method to get match list from the API
 
       matches.add(
         MatchModel(

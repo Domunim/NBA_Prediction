@@ -1,11 +1,12 @@
-import 'dart:collection';
+import 'package:nba_prediction/models/gameResult_model.dart';
 
 class TeamModel {
   String name;
   String shortName;
   int conferencePlace;
   String record;
-  HashMap lastGames;
+  String venue;
+  List<GameResultModel> lastGames;
 
 
   TeamModel({
@@ -13,6 +14,7 @@ class TeamModel {
     required this.shortName,
     required this.conferencePlace,
     required this.record,
+    required this.venue,
     required this.lastGames,
   });
 
@@ -27,7 +29,8 @@ class TeamModel {
           shortName: "MEM",
           conferencePlace: 2,
           record: "50-32",
-          lastGames: new HashMap<String, String>(), // dodać czy H czy A
+          venue: "Grizzlies Arena",
+          lastGames: List.empty(),
         )
       );
       
@@ -37,7 +40,8 @@ class TeamModel {
           shortName: "MIN",
           conferencePlace: 3,
           record: "47-35",
-          lastGames: new HashMap<String, String>(), // dodać czy H czy A
+          venue: "Grizzlies Arena",
+          lastGames: List.empty(),
         )
       );
             
@@ -47,7 +51,8 @@ class TeamModel {
           shortName: "BKN",
           conferencePlace: 4,
           record: "42-40",
-          lastGames: new HashMap<String, String>(), // dodać czy H czy A
+          venue: "Grizzlies Arena",
+          lastGames: List.empty(),
         )
       );
       
@@ -57,7 +62,8 @@ class TeamModel {
           shortName: "GSW",
           conferencePlace: 1,
           record: "73-9",
-          lastGames: new HashMap<String, String>(), // dodać czy H czy A
+          venue: "Grizzlies Arena",
+          lastGames: List.empty(),
         )
       );
       
@@ -67,7 +73,8 @@ class TeamModel {
           shortName: "CHI",
           conferencePlace: 8,
           record: "14-68",
-          lastGames: new HashMap<String, String>(), // dodać czy H czy A
+          venue: "Grizzlies Arena",
+          lastGames: List.empty(),
         )
       );
       
@@ -77,7 +84,8 @@ class TeamModel {
           shortName: "LAL",
           conferencePlace: 5,
           record: "51-31",
-          lastGames: new HashMap<String, String>(), // dodać czy H czy A
+          venue: "Grizzlies Arena",
+          lastGames: List.empty(),
         )
       );
       
@@ -87,7 +95,8 @@ class TeamModel {
           shortName: "DEN",
           conferencePlace: 2,
           record: "68-16",
-          lastGames: new HashMap<String, String>(), // dodać czy H czy A
+          venue: "Grizzlies Arena",
+          lastGames: List.empty(),
         )
       );
       
@@ -97,7 +106,8 @@ class TeamModel {
           shortName: "DAL",
           conferencePlace: 6,
           record: "53-29",
-          lastGames: new HashMap<String, String>(), // dodać czy H czy A
+          venue: "Grizzlies Arena",
+          lastGames: List.empty(),
         )
       );   
 
@@ -107,7 +117,8 @@ class TeamModel {
           shortName: "LAC",
           conferencePlace: 3,
           record: "49-33",
-          lastGames: new HashMap<String, String>(), // dodać czy H czy A
+          venue: "Grizzlies Arena",
+          lastGames: List.empty(),
         )
       );   
 
@@ -117,7 +128,8 @@ class TeamModel {
           shortName: "WAS",
           conferencePlace: 7,
           record: "29-53",
-          lastGames: new HashMap<String, String>(), // dodać czy H czy A
+          venue: "Grizzlies Arena",
+          lastGames: List.empty(),
         )
       );
 
