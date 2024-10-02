@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nba_prediction/models/match_model.dart';
 import 'package:nba_prediction/models/team_model.dart';
 import 'package:nba_prediction/pages/matchDetails.dart';
 import 'package:nba_prediction/widgets/appBar.dart';
+import 'package:nba_prediction/widgets/dateBar.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<MatchModel> matches = [];
   List<TeamModel> teams = [];
+  DateTime selectedDate = DateTime.now();
   final ScrollController _scrollController = ScrollController();
 
   void getTeamsAndMatches() {
@@ -32,6 +33,11 @@ class _HomePageState extends State<HomePage> {
     getTeamsAndMatches();
   }
 
+  void _onDateSelected(DateTime newDate) {
+    setState(() {
+      selectedDate = newDate;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,35 +46,11 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: appBar(context),
       body: Column(children: [
-          dateBar(),
+          dateBar(selectedDate, _onDateSelected),
           matchList(),
         ],
       ),
     );
-  }
-
-  Container dateBar() { // TODO - if selected highlight, center
-    return Container(
-      height: 60.0,
-      child: Center(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(7, (index) {
-              DateTime date = DateTime.now().add(Duration(days: index - 3));
-              String label = index == 3 ? "Today" : "${date.day}.${date.month}";
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Chip( // TODO wrap the chip with gesturedetector
-                  label: Text(label),
-                  ),
-                );
-              }),
-            ),
-          ),
-        ),
-      );
   }
 
   Expanded matchList() {
@@ -84,10 +66,10 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+
 GestureDetector matchCard(MatchModel match) {
   return GestureDetector(
     onTap: () {
-      print('Navigating to MatchDetails...'); // TEST
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -95,7 +77,13 @@ GestureDetector matchCard(MatchModel match) {
         ),
       );
     },
-    child: Card(
+    child: gameCard(match)
+  );
+}
+
+
+Card gameCard(MatchModel match) {
+  return Card(
       margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -190,11 +178,8 @@ GestureDetector matchCard(MatchModel match) {
           ],
         ),
       ),
-    ),
-  );
-}
-
-
+    );
+  }
 
 
   void _scrollToCenter() {
