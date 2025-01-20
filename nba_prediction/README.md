@@ -1,6 +1,6 @@
 # NBA Prediction App
 
-A Flutter mobile application designed for getting an overview of upcoming NBA gammes along with probability of winning of each team.
+A Flutter mobile application designed for getting an overview of upcoming NBA games along with each team's probability of winning.
 
 ## Overview
 
@@ -14,6 +14,6 @@ Selecting a specific game brings a page with detailed view of the match, present
 
 ## Features
 
-- Integration with an API, 
+- Integration with a web API, 
 - Clean UI with bright and dark modes and sleek animations,
 - Simple and to the point UX
