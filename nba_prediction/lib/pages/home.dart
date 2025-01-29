@@ -6,7 +6,7 @@ import 'package:nba_prediction/widgets/appBar.dart';
 import 'package:nba_prediction/widgets/dateBar.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -18,10 +18,12 @@ class _HomePageState extends State<HomePage> {
   DateTime selectedDate = DateTime.now();
   final ScrollController _scrollController = ScrollController();
 
+/*
   void getTeamsAndMatches() {
     matches = MatchModel.getMatches();
     teams = TeamModel.getTeams();
   }
+*/
 
   @override
   void initState() {
@@ -30,7 +32,8 @@ class _HomePageState extends State<HomePage> {
       _scrollToCenter();
     });
     
-    getTeamsAndMatches();
+    fetchData();
+    // getTeamsAndMatches(); // Loading mock data
   }
 
   void _onDateSelected(DateTime newDate) {
@@ -39,16 +42,32 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+    Future<void> fetchData() async {
+    try {
+      List<TeamModel> fetchedTeams = await TeamModel.fetchTeams();
+      List<MatchModel> fetchedMatches = await MatchModel.fetchMatches();
+
+      setState(() {
+        teams = fetchedTeams;
+        matches = fetchedMatches;
+      });
+    } catch (e) {
+      print('Error fetching data: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    getTeamsAndMatches();
+    //getTeamsAndMatches(); // Loading mock data
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: appBar(context),
       body: Column(children: [
           dateBar(selectedDate, _onDateSelected),
-          matchList(),
-        ],
+          matches.isEmpty
+              ? const Center(child: CircularProgressIndicator())
+              : matchList(),
+          ],
       ),
     );
   }
@@ -84,7 +103,7 @@ GestureDetector matchCard(MatchModel match) {
 
 Card gameCard(MatchModel match) {
   return Card(
-      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -96,12 +115,12 @@ Card gameCard(MatchModel match) {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  match.date.hour.toString().padLeft(2, '0') + ":" + match.date.minute.toString().padLeft(2, '0'),
-                  style: TextStyle(fontSize: 16.0, color: Colors.blueGrey),
+                  "${match.date.hour.toString().padLeft(2, '0')}:${match.date.minute.toString().padLeft(2, '0')}",
+                  style: const TextStyle(fontSize: 16.0, color: Colors.blueGrey),
                 ),
               ],
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
 
             // Teams and odds
             Row(
@@ -119,7 +138,7 @@ Card gameCard(MatchModel match) {
                           height: 60.0,
                         ),
                       ),
-                      SizedBox(height: 4.0),
+                      const SizedBox(height: 4.0),
                       Text(
                         TeamModel.getTeamName(match.homeTeamShortName, teams),
                         textAlign: TextAlign.center,
@@ -134,15 +153,15 @@ Card gameCard(MatchModel match) {
                     children: [
                       RichText(
                         text: TextSpan(
-                          style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.black),
+                          style: const TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.black),
                           children: [
                             TextSpan(text: '${match.oddsForHomeTeam}'),
-                            TextSpan(
+                            const TextSpan(
                               text: '%',
                               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.normal),
                             ),
                             TextSpan(text: ' : ${match.oddsForAwayTeam}'),
-                            TextSpan(
+                            const TextSpan(
                               text: '%',
                               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.normal),
                             ),
@@ -165,7 +184,7 @@ Card gameCard(MatchModel match) {
                           height: 60.0,
                         ),
                       ),
-                      SizedBox(height: 4.0),
+                      const SizedBox(height: 4.0),
                       Text(
                         TeamModel.getTeamName(match.awayTeamShortName, teams),
                         textAlign: TextAlign.center,
@@ -186,7 +205,7 @@ Card gameCard(MatchModel match) {
     final double scrollPosition = _scrollController.position.maxScrollExtent / 2;
     _scrollController.animateTo(
       scrollPosition,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
   }

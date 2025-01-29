@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 class MatchModel {
   DateTime date;
   String homeTeamShortName;
@@ -14,10 +17,30 @@ class MatchModel {
     required this.oddsForAwayTeam,
   });
 
+  factory MatchModel.fromJson(Map<String, dynamic> json) {
+    return MatchModel(
+      date: DateTime.parse(json['date']),
+      homeTeamShortName: json['homeTeamShortName'],
+      awayTeamShortName: json['awayTeamShortName'],
+      oddsForHomeTeam: json['oddsForHomeTeam'],
+      oddsForAwayTeam: json['oddsForAwayTeam'],
+    );
+  }
+
+  static Future<List<MatchModel>> fetchMatches() async {
+    final response = await http.get(Uri.parse('(...)/matches')); // TODO change API URL after publishing
+
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      return data.map((json) => MatchModel.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load matches');
+    }
+  }
+/*
+// MOCK DATA
   static List<MatchModel> getMatches() {
       List<MatchModel> matches = [];
-
-      // TODO method to get match list from the API
 
       matches.add(
         MatchModel(
@@ -68,8 +91,8 @@ class MatchModel {
           oddsForAwayTeam: 61,
         )
       );
-
       return matches;
   }
+*/
 
 }

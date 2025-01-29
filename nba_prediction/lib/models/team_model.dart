@@ -1,4 +1,6 @@
 import 'package:nba_prediction/models/gameResult_model.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class TeamModel {
   String name;
@@ -18,11 +20,37 @@ class TeamModel {
     required this.lastGames,
   });
 
+  factory TeamModel.fromJson(Map<String, dynamic> json) {
+    return TeamModel(
+      name: json['name'],
+      shortName: json['shortName'],
+      conferencePlace: json['conferencePlace'],
+      record: json['record'],
+      venue: json['venue'],
+      lastGames: json['lastGames'],
+    );
+  }
+
+  static Future<List<TeamModel>> fetchTeams() async {
+    final response = await http.get(Uri.parse('https://(...))/teams')); // TODO API URL
+
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      return data.map((json) => TeamModel.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load teams');
+    }
+  }
+
+  static String getTeamName(String shortName, List<TeamModel> teamsList) {
+      return teamsList.where((TeamModel t) => t.shortName == shortName).first.name;
+  }
+  
+/*
+      // mock data
     static List<TeamModel> getTeams() {
       List<TeamModel> teams = [];
 
-      // method to get list of teams from the API
-      
       teams.add(
         TeamModel(
           name: "Memphis Grizzlies",
@@ -135,8 +163,6 @@ class TeamModel {
 
       return teams;
   }
+*/
 
-  static String getTeamName(String shortName, List<TeamModel> teamsList) {
-      return teamsList.where((TeamModel t) => t.shortName == shortName).first.name;
-  }
 }

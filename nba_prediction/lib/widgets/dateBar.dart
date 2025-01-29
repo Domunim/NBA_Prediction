@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-Container dateBar(DateTime selectedDate, Function(DateTime) onDateSelected) {
-  return Container(
+SizedBox dateBar(DateTime selectedDate, Function(DateTime) onDateSelected) {
+  return SizedBox(
     height: 60.0,
     child: Center(
       child: SingleChildScrollView(

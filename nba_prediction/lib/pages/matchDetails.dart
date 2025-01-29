@@ -7,7 +7,7 @@ class MatchDetails extends StatelessWidget {
   final MatchModel match;
   final List<TeamModel> teams;
 
-  MatchDetails({required this.match, required this.teams});
+  const MatchDetails({super.key, required this.match, required this.teams});
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +18,14 @@ class MatchDetails extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               
               // Time
               Text(
                 "${match.date.hour.toString().padLeft(2, '0')}:${match.date.minute.toString().padLeft(2, '0')}",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey),
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -42,11 +42,11 @@ class MatchDetails extends StatelessWidget {
                             height: 100.0,
                           ),
                         ),
-                        SizedBox(height: 8.0),
+                        const SizedBox(height: 8.0),
                         Text(
                           TeamModel.getTeamName(match.homeTeamShortName, teams),
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16.0),
+                          style: const TextStyle(fontSize: 16.0),
                         ),
                       ],
                     ),
@@ -58,7 +58,7 @@ class MatchDetails extends StatelessWidget {
                       children: [
                         Text(
                           "${match.oddsForHomeTeam}% : ${match.oddsForAwayTeam}%",
-                          style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -76,11 +76,11 @@ class MatchDetails extends StatelessWidget {
                             height: 100.0,
                           ),
                         ),
-                        SizedBox(height: 8.0),
+                        const SizedBox(height: 8.0),
                         Text(
                           TeamModel.getTeamName(match.awayTeamShortName, teams),
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16.0),
+                          style: const TextStyle(fontSize: 16.0),
                         ),
                       ],
                     ),
@@ -88,15 +88,15 @@ class MatchDetails extends StatelessWidget {
                 ],
               ),
         
-              SizedBox(height: 40.0),
+              const SizedBox(height: 40.0),
         
               // Additional details
               Text(
                 "Match Venue: ${match.homeTeamShortName} Area",
-                style: TextStyle(fontSize: 18.0),
+                style: const TextStyle(fontSize: 18.0),
               ),
-              SizedBox(height: 20.0),
-              Text(
+              const SizedBox(height: 20.0),
+              const Text(
                 "TODO - Additional info and previous match lists to be added",
                 style: TextStyle(fontSize: 18.0, color: Colors.grey),
               ),

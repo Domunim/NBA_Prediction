@@ -18,15 +18,15 @@ AppBar appBar(BuildContext context) {
           },
           child: Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Theme.of(context).secondaryHeaderColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: SvgPicture.asset(
               'assets/icons/dark_light_mode_icon.svg',
               height: 30,
               width: 30,
-            ),
-            decoration: BoxDecoration(
-              color: Theme.of(context).secondaryHeaderColor,
-              borderRadius: BorderRadius.circular(10),
             ),
           ),
         ),
