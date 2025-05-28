@@ -1,19 +1,40 @@
 # NBA Prediction App
 
-A Flutter mobile application designed for getting an overview of upcoming NBA games along with each team's probability of winning.
+A Flutter mobile application designed for getting an overview of NBA games with AI predictions and detailed statistics.
 
-## Overview
+[![Main screen demo](https://i.postimg.cc/HWbwmDMb/image.png)](https://postimg.cc/ThYLjsCP)
 
-The application consists of two pages. The main screen presents a scrollable list of matches being played on a selected date. 
-
-[![image.png](https://i.postimg.cc/HWbwmDMb/image.png)](https://postimg.cc/ThYLjsCP)
-
-Selecting a specific game brings a page with detailed view of the match, presenting game information, current standings and previous matches of both teams participating.
-
-[![image.png](https://i.postimg.cc/P5Sb7Wwc/image.png)](https://postimg.cc/WdJJFJS6)
+[![Game details demo](https://i.postimg.cc/P5Sb7Wwc/image.png)](https://postimg.cc/WdJJFJS6)
 
 ## Features
 
-- Integration with a web API, 
-- Clean UI with bright and dark modes and sleek animations,
-- Simple and to the point UX
+- **Live Game Data**: Real-time updates for ongoing games
+- **Predictive Analytics**: Win probability calculations using Machine Learning models
+- **Dark/Light Theme**: Automatic system theme detection with manual override
+- **Game Details**: Comprehensive stats including:
+  - Team performance metrics
+  - Head-to-head comparisons
+  - Recent game history
+- **Responsive Design**: Optimized for mobile devices
+
+## Technical Highlights
+
+- **Modern Architecture**: Clean architecture with MVVM pattern
+- **API Integration**: RESTful API communication with error handling
+- **State Management**: Provider for theme and data management
+- **Animations**: Hero animations for smooth transitions
+- **Adaptive UI**: Responsive layout for various screen sizes
+
+## Development
+
+### Prerequisites
+- Flutter 3.7+
+- Dart 2.19+
+- iOS/Android development environment
+
+### Installation
+```bash
+git clone https://github.com/yourusername/nba-prediction-app.git
+cd nba-prediction-app
+flutter pub get
+flutter run

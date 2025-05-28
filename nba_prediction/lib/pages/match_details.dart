@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nba_prediction/models/game_details_api.dart';
+import 'package:nba_prediction/utils/game_details_api.dart';
 import 'package:nba_prediction/models/game_details_model.dart';
 import 'package:nba_prediction/models/game_model.dart';
 import 'package:nba_prediction/models/game_stats_model.dart';
