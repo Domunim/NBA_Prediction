@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nba_prediction/utils/theme_provider.dart';
 import 'pages/home.dart';
-import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider<ThemeProvider>(
-      create: (context) => ThemeProvider(),
-      child: const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -30,13 +23,9 @@ class MyApp extends StatelessWidget {
           seedColor: Colors.blue,
           brightness: Brightness.dark,
         ),
-      ),      
-      themeMode: context.watch<ThemeProvider>().themeMode,
-      home: const HomePage()
+      ),
+      themeMode: ThemeMode.light, // or ThemeMode.dark / ThemeMode.system
+      home: const HomePage(),
     );
   }
 }
-
-
-// TODO add       fontFamily: 'Poppins'
-// TODO watch?
