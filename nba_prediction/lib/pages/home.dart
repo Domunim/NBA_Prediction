@@ -37,7 +37,8 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> _loadGames() async {
     try {
-      final fetchedGames = await Game.fetchGames(selectedDate.toIso8601String().split('T')[0]);
+      //final fetchedGames = await Game.fetchGames(selectedDate.toIso8601String().split('T')[0]); // Real API call
+      final fetchedGames = await Game.fetchMockGames(selectedDate.toIso8601String().split('T')[0]); // Mock data
       setState(() => games = fetchedGames);
     } catch (e) {
       print('Error loading games: $e');

@@ -45,8 +45,8 @@ class GameStats {
 
   factory GameStats.fromJson(Map<String, dynamic> json) {
     return GameStats(
+      // Team stats
       teamPoints: json['teamPoints'] as int? ?? 0,
-      opponentPoints: json['opponentPoints'] as int? ?? 0,
       teamFieldGoalPct: (json['teamFieldGoalPct'] as num?)?.toDouble() ?? 0.0,
       teamFreeThrowPct: (json['teamFreeThrowPct'] as num?)?.toDouble() ?? 0.0,
       teamThreePointPct: (json['teamThreePointPct'] as num?)?.toDouble() ?? 0.0,
@@ -56,6 +56,9 @@ class GameStats {
       teamBlocks: json['teamBlocks'] as int? ?? 0,
       teamTurnovers: json['teamTurnovers'] as int? ?? 0,
       teamFouls: json['teamFouls'] as int? ?? 0,
+
+      // Opponent stats
+      opponentPoints: json['opponentPoints'] as int? ?? 0,
       opponentFieldGoalPct: (json['opponentFieldGoalPct'] as num?)?.toDouble() ?? 0.0,
       opponentFreeThrowPct: (json['opponentFreeThrowPct'] as num?)?.toDouble() ?? 0.0,
       opponentThreePointPct: (json['opponentThreePointPct'] as num?)?.toDouble() ?? 0.0,

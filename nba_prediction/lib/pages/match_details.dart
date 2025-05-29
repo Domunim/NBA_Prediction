@@ -17,7 +17,8 @@ class MatchDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: appBar(context),
       body: FutureBuilder<GameDetails>(
-        future: GameDetailsApi.fetchGameDetails(gameId),
+        //future: GameDetailsApi.fetchGameDetails(gameId), // Real API call
+        future: GameDetailsApi.fetchMockGameDetails(gameId), // Mock data
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
