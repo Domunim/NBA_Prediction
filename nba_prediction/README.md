@@ -39,10 +39,11 @@ A Flutter mobile application designed for getting an overview of NBA games with 
 
 ### Installation
 ```bash
-git clone https://github.com/yourusername/nba-prediction-app.git
+git clone https://github.com/Domunim/NBA_Prediction/tree/main/nba_prediction.git
 cd nba-prediction-app
 flutter pub get
 flutter run
+```
 
 ### Demo video
 
