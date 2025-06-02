@@ -119,28 +119,31 @@ class MatchDetailsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildMiddleSection(Game game) {
+Widget _buildMiddleSection(Game game) {
+  final bool hasWinProbability = 
+    game.homeTeam.winProbability != null && game.awayTeam.winProbability != null;
+
+  if (game.gameStatusText == 'Final') {
+    return const Text('Final Score', style: TextStyle(fontSize: 16, color: Colors.green));
+  }
+
+  if (hasWinProbability) {
+    final homeProb = (game.homeTeam.winProbability! * 100).toStringAsFixed(2);
+    final awayProb = (game.awayTeam.winProbability! * 100).toStringAsFixed(2);
     return Column(
       children: [
-        if (game.gameStatusText != 'Final')
-          const Text('VS', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-        if (game.gameStatusText == 'Final')
-          const Text('Final Score', style: TextStyle(fontSize: 16, color: Colors.green)),
-        if (game.gameStatusText == 'Preview') ...[
-          const SizedBox(height: 8),
-          Text(
-            '${game.homeTeamPoints}%',
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          const Text('VS', style: TextStyle(fontSize: 18)),
-          Text(
-            '${game.awayTeamPoints}%',
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ],
+        const Text('Win Probability', style: TextStyle(fontSize: 16, color: Colors.blue)),
+        const SizedBox(height: 8),
+        Text(
+          '$homeProb% - $awayProb%',
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
       ],
     );
   }
+
+  return const Text('VS', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold));
+}
 
   Widget _buildVenueSection(Game game) {
     return Column(
