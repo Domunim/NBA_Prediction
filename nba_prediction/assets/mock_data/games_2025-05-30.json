@@ -1,0 +1,34 @@
+[
+  {
+    "gameId": "30",
+    "gameDateTimeUTC": "2025-05-11T00:30:00Z",
+    "gameStatusText": "8:30 pm ET",
+    "arenaName": "Chase Center",
+    "arenaState": "CA",
+    "arenaCity": "San Francisco",
+    "homeTeam": {
+      "teamId": 1610612744,
+      "teamName": "Knicks",
+      "teamCity": "New York",
+      "teamTricode": "NYK",
+      "teamSlug": "knicks",
+      "wins": 1,
+      "losses": 3,
+      "score": 0,
+      "seed": 3,
+      "winProbability": 0.46222585439682007
+    },
+    "awayTeam": {
+      "teamId": 1610612750,
+      "teamName": "Pacers",
+      "teamCity": "Indiana",
+      "teamTricode": "IND",
+      "teamSlug": "pacers",
+      "wins": 3,
+      "losses": 1,
+      "score": 0,
+      "seed": 4,
+      "winProbability": 0.5377741456031799
+    }
+  }
+]

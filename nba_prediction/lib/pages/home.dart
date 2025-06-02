@@ -49,6 +49,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _scrollToCenter() {
+    /*
     final context = _dateBarKey.currentContext;
     if (context == null) return;
 
@@ -61,6 +62,7 @@ class _HomePageState extends State<HomePage> {
       duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
+    */
   }
 
   @override

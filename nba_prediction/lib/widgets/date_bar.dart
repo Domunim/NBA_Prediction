@@ -22,7 +22,8 @@ class DateBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(7, (index) {
-              DateTime date = DateTime.now().add(Duration(days: index - 3));
+              DateTime date = DateTime.parse("2025-05-30").add(Duration(days: index - 3));
+              //DateTime date = DateTime.now().add(Duration(days: index - 3));
               String label = index == 3 ? "Today" : "${date.day}.${date.month}";
               
               return GestureDetector(
@@ -57,7 +58,8 @@ class DateBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(7, (index) {
-              DateTime date = DateTime.now().add(Duration(days: index - 3));
+              DateTime date = DateTime.parse("2025-05-30").add(Duration(days: index - 3));
+              //DateTime date = DateTime.now().add(Duration(days: index - 3));
               String label = index == 3 ? "Today" : "${date.day}.${date.month}";
               
               return GestureDetector(

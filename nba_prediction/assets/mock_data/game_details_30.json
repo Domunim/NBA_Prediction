@@ -1,0 +1,148 @@
+{
+  "game": {
+    "gameId": "30",
+    "gameDateTimeUTC": "2025-05-11T00:30:00Z",
+    "gameStatusText": "8:30 pm ET",
+    "arenaName": "Chase Center",
+    "arenaState": "CA",
+    "arenaCity": "San Francisco",
+    "homeTeam": {
+      "teamId": 1610612744,
+      "teamName": "Warriors",
+      "teamCity": "Golden State",
+      "teamTricode": "GSW",
+      "teamSlug": "warriors",
+      "wins": 1,
+      "losses": 1,
+      "score": 0,
+      "seed": 7,
+      "winProbability": 0.5377741456031799
+    },
+    "awayTeam": {
+      "teamId": 1610612750,
+      "teamName": "Timberwolves",
+      "teamCity": "Minnesota",
+      "teamTricode": "MIN",
+      "teamSlug": "timberwolves",
+      "wins": 1,
+      "losses": 1,
+      "score": 0,
+      "seed": 6,
+      "winProbability": 0.46222585439682007
+    }
+  },
+  "previous_home_games": [
+    {
+      "gameId": "0042400232",
+      "gameDate": "2025-05-08",
+      "teamTricode": "GSW",
+      "teamName": "Warriors",
+      "teamPoints": 93,
+      "opponentTricode": "MIN",
+      "opponentName": "Timberwolves",
+      "opponentPoints": 117,
+      "gameLocation": "A"
+    },
+    {
+      "gameId": "0042400231",
+      "gameDate": "2025-05-06",
+      "teamTricode": "GSW",
+      "teamName": "Warriors",
+      "teamPoints": 99,
+      "opponentTricode": "MIN",
+      "opponentName": "Timberwolves",
+      "opponentPoints": 88,
+      "gameLocation": "A"
+    },
+    {
+      "gameId": "0042400157",
+      "gameDate": "2025-05-04",
+      "teamTricode": "GSW",
+      "teamName": "Warriors",
+      "teamPoints": 103,
+      "opponentTricode": "HOU",
+      "opponentName": "Rockets",
+      "opponentPoints": 89,
+      "gameLocation": "A"
+    },
+    {
+      "gameId": "0042400156",
+      "gameDate": "2025-05-02",
+      "teamTricode": "GSW",
+      "teamName": "Warriors",
+      "teamPoints": 107,
+      "opponentTricode": "HOU",
+      "opponentName": "Rockets",
+      "opponentPoints": 115,
+      "gameLocation": "H"
+    },
+    {
+      "gameId": "0042400155",
+      "gameDate": "2025-04-30",
+      "teamTricode": "GSW",
+      "teamName": "Warriors",
+      "teamPoints": 116,
+      "opponentTricode": "HOU",
+      "opponentName": "Rockets",
+      "opponentPoints": 131,
+      "gameLocation": "A"
+    }
+  ],
+  "previous_away_games": [
+    {
+      "gameId": "0042400232",
+      "gameDate": "2025-05-08",
+      "teamTricode": "MIN",
+      "teamName": "Timberwolves",
+      "teamPoints": 117,
+      "opponentTricode": "GSW",
+      "opponentName": "Warriors",
+      "opponentPoints": 93,
+      "gameLocation": "H"
+    },
+    {
+      "gameId": "0042400231",
+      "gameDate": "2025-05-06",
+      "teamTricode": "MIN",
+      "teamName": "Timberwolves",
+      "teamPoints": 88,
+      "opponentTricode": "GSW",
+      "opponentName": "Warriors",
+      "opponentPoints": 99,
+      "gameLocation": "H"
+    },
+    {
+      "gameId": "0042400165",
+      "gameDate": "2025-04-30",
+      "teamTricode": "MIN",
+      "teamName": "Timberwolves",
+      "teamPoints": 103,
+      "opponentTricode": "LAL",
+      "opponentName": "Lakers",
+      "opponentPoints": 96,
+      "gameLocation": "A"
+    },
+    {
+      "gameId": "0042400164",
+      "gameDate": "2025-04-27",
+      "teamTricode": "MIN",
+      "teamName": "Timberwolves",
+      "teamPoints": 116,
+      "opponentTricode": "LAL",
+      "opponentName": "Lakers",
+      "opponentPoints": 113,
+      "gameLocation": "H"
+    },
+    {
+      "gameId": "0042400163",
+      "gameDate": "2025-04-25",
+      "teamTricode": "MIN",
+      "teamName": "Timberwolves",
+      "teamPoints": 116,
+      "opponentTricode": "LAL",
+      "opponentName": "Lakers",
+      "opponentPoints": 104,
+      "gameLocation": "H"
+    }
+  ]
+}

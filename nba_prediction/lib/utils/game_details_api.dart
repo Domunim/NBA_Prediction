@@ -14,8 +14,7 @@ class GameDetailsApi {
   }
 
   static Future<GameDetails> fetchMockGameDetails(String gameId) async {
-  //final jsonString = await rootBundle.loadString('assets/mock_data/game_details_$gameId.json');
-  final jsonString = await rootBundle.loadString('assets/mock_data/past_game_details.json');
+  final jsonString = await rootBundle.loadString('assets/mock_data/game_details_$gameId.json');
   final Map<String, dynamic> data = json.decode(jsonString);
   return GameDetails.fromJson(data);
   }

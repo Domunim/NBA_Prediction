@@ -1,0 +1,32 @@
+[
+  {
+    "gameId": "27",
+    "gameDateTimeUTC": "2025-05-27T02:30:00Z",
+    "gameStatusText": "Final",
+    "arenaName": "Target Center",
+    "arenaState": "MN",
+    "arenaCity": "Minneapolis",
+    "homeTeam": {
+      "teamId": 1610612750,
+      "teamName": "Timberwolves",
+      "teamCity": "Minnesota",
+      "teamTricode": "MIN",
+      "teamSlug": "timberwolves",
+      "wins": 1,
+      "losses": 3,
+      "score": 126,
+      "seed": 6
+    },
+    "awayTeam": {
+      "teamId": 1610612744,
+      "teamName": "Thunder",
+      "teamCity": "Oklahoma",
+      "teamTricode": "OKC",
+      "teamSlug": "thunder",
+      "wins": 3,
+      "losses": 1,
+      "score": 128,
+      "seed": 1
+    }
+  }
+]

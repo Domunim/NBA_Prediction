@@ -61,7 +61,7 @@ factory Game.fromJson(Map<String, dynamic> json) {
     final today = DateTime.now();
 
     List<dynamic> jsonData;
-
+/*
     if (parsedDate.isBefore(DateTime(today.year, today.month, today.day))) {
       // Past games
       final jsonString = await rootBundle.loadString('assets/mock_data/past_games.json');
@@ -71,6 +71,9 @@ factory Game.fromJson(Map<String, dynamic> json) {
       final jsonString = await rootBundle.loadString('assets/mock_data/incoming_games.json');
       jsonData = json.decode(jsonString);
     }
+*/
+    final jsonString = await rootBundle.loadString('assets/mock_data/games_$date.json');
+    jsonData = json.decode(jsonString);
 
     return jsonData.map<Game>((json) => Game.fromJson(json)).toList();
   }
