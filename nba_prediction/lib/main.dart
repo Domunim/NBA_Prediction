@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      themeMode: ThemeMode.dark, // or ThemeMode.dark / ThemeMode.system
+      themeMode: ThemeMode.light, // or ThemeMode.dark / ThemeMode.system
       home: const HomePage(),
     );
   }

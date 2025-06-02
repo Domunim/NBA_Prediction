@@ -2,9 +2,14 @@
 
 A Flutter mobile application designed for getting an overview of NBA games with AI predictions and detailed statistics.
 
-[![Main screen demo](https://i.postimg.cc/HWbwmDMb/image.png)](https://postimg.cc/ThYLjsCP)
+[![Light mode - home screen demo](https://i.postimg.cc/pXZL1gVT/light-mode-home-screen-demo.png)](https://postimg.cc/ykDKDpZ4)
 
-[![Game details demo](https://i.postimg.cc/P5Sb7Wwc/image.png)](https://postimg.cc/WdJJFJS6)
+[![Past game details demo](https://i.postimg.cc/sgggFw1J/past-game-details-demo.png)](https://postimg.cc/BXR0H5T8)
+
+[![Incoming game details demo](https://i.postimg.cc/B6Hq5zwJ/incoming-game-details-demo.png)](https://postimg.cc/xJjDn62Z)
+
+[![Main screen demo](https://i.postimg.cc/rmBDMW7w/1.png)](https://postimg.cc/9RBmB4W6)
+
 
 ## Features
 
@@ -38,3 +43,7 @@ git clone https://github.com/yourusername/nba-prediction-app.git
 cd nba-prediction-app
 flutter pub get
 flutter run
+
+### Demo video
+
+https://streamable.com/4ihaa4
